@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import connect from "./config/db.config.js";
 import Recipe from "./models/Recipe.model.js";
+import data from "./data.json" assert { type: "json" };
 
 dotenv.config();
 
@@ -31,6 +32,9 @@ async function init() {
     creator: "Hannah dela Cruz",
   });
   console.log(`Recipe ${recipe1.title} submitted successfully`);
+
+  let populate = await Recipe.insertMany(data);
+  console.log(populate.map((recipe) => recipe.title).join(", "));
 }
 
 init();
