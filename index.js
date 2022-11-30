@@ -6,7 +6,7 @@ import data from "./data.json" assert { type: "json" };
 dotenv.config();
 
 async function init() {
-  await connect();
+  const connection = await connect();
 
   let recipe1 = await Recipe.create({
     title: "Sourdough Pancakes",
@@ -35,6 +35,18 @@ async function init() {
 
   let populate = await Recipe.insertMany(data);
   console.log(populate.map((recipe) => recipe.title).join(", "));
+
+  await Recipe.findOneAndUpdate(
+    { title: "Rigatoni alla Genovese" },
+    { duration: 100 },
+    { new: true, runValidators: true }
+  );
+  console.log("Rigatoni alla Genovese successfully updated.");
+
+  await Recipe.deleteOne({ title: "Carrot Cake" });
+  console.log("Carrot Cake successfully removed.");
+
+  connection.disconnect();
 }
 
 init();
