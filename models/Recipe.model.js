@@ -33,7 +33,7 @@ const recipeSchema = new Schema({
   },
   duration: { type: Number, min: 0 },
   creator: String,
-  created: { type: Date, default: Date.now() },
+  created: { type: Date, default: Date.now },
 });
 
 const Recipe = model("Recipe", recipeSchema);
