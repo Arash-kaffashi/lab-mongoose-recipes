@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+import { Schema as _Schema, model } from "mongoose";
+const Schema = _Schema;
 
 const recipeSchema = new Schema({
   // TODO: write the schema
 });
 
-const Recipe = mongoose.model('Recipe', recipeSchema);
+const Recipe = model("Recipe", recipeSchema);
 
-module.exports = Recipe;
+export default Recipe;
